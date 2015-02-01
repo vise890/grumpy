@@ -17,9 +17,9 @@ type MD5HASH = Int
 type ShortUnicode = String
 
 hash :: URL -> MD5HASH
-hash url = abs . fst . head $ n
+hash url = abs n
            where md5 = show . MD5.md5 . LBS.pack
-                 n = readHex $ md5 url
+                 n = fst . head . readHex $ md5 url
 
 toShortUnicode :: MD5HASH -> ShortUnicode
 toShortUnicode n = map toChar codePoints
